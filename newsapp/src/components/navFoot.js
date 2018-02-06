@@ -10,13 +10,16 @@ const NavFoot = ({topics}) => {
         <nav className="tabs">
           <div className="container">
            <ul>
-             <a href="">dffd</a>
-              {
+            <Link to={`/`}>Home</Link>
+            <Link to={`/topics/football/articles`}>Football</Link>
+            <Link to={`/topics/coding/articles`}>Coding</Link>
+            <Link to={`/topics/Cooking/articles`}>Cooking</Link>
+              {/* {
                 topics.map(topic => (
                   <li key={topic.slug}>
                     <Link to={`/topics/${topic.slug}/articles`}>{topic.name}</Link>
                   </li>
-                ))}
+                ))} //This map was failing to render using Bulma????///*/}
            </ul>
           </div>
         </nav>

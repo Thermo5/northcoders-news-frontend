@@ -35,10 +35,17 @@ class HomePage extends React.Component {
 
   render() {
     const { articles, loading } = this.state;
+    //console.log(articles)
     return (
+      <div>
+        {loading || articles.length === 0 ? (
+          <p>Loading...</p>
+        ) : (
       <div className="section">
-        <ArticleList voteUpOrDownOnArticle={(this.voteUpOrDownOnArticle)} />
+        <ArticleList articles={articles} voteUpOrDownOnArticle={(this.voteUpOrDownOnArticle)} />
         </div>
+          )}
+      </div>
     );
   }
 }

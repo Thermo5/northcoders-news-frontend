@@ -17,7 +17,7 @@ class CommentsList extends React.Component {
   }
 
   voteUpOrDownOnComment = (commentId, vote) => {
-    
+    console.log(vote, 'vote')
     return voteComment(commentId, vote)
     console.log('2')
       .then(body => {
