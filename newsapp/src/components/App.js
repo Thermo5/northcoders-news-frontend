@@ -18,11 +18,12 @@ class App extends Component {
     error: null
   };
   componentDidMount() {
-    fetchTopics()
+    return fetchTopics()
       .then(body => {
-        this.setState({ topics: body.topics, loading: false });
+        this.setState({ topics: body.topics, loading: false }); 
       })
       .catch(error => {
+        console.log(error)
         this.setState({ error, loading: false });
       });
   }

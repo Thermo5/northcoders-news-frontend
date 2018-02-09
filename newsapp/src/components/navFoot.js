@@ -13,7 +13,7 @@ const NavFoot = ({topics}) => {
             <Link to={`/`}>Home</Link>
             <Link to={`/topics/football/articles`}>Football</Link>
             <Link to={`/topics/coding/articles`}>Coding</Link>
-            <Link to={`/topics/Cooking/articles`}>Cooking</Link>
+            <Link to={`/topics/cooking/articles`}>Cooking</Link>
               {/* {
                 topics.map(topic => (
                   <li key={topic.slug}>

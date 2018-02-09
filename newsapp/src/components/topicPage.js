@@ -9,6 +9,7 @@ class TopicPage extends React.Component {
   }
   
   componentDidMount() {
+    console.log(this.props, 'topic')
     const { topic } = this.props.match.params;
     this.fetchArticlesByTopic(topic);
   }

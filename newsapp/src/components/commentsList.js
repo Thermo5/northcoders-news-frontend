@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ArticleList from "./articleList";
+import AddComment from "./addComment";
 import { fetchArticles, voteArticle, fetchComments, voteComment } from "../api";
 import Voter from "./vote";
 
@@ -11,15 +12,15 @@ class CommentsList extends React.Component {
   }
 
   componentDidMount() {
-    fetchComments().then(body => {
-      this.setState({ comments: body, loading: false });
+    const articleId = this.props.match.params.article_id
+    fetchComments(articleId).then(body => {
+      this.setState({ comments: body.comments, loading: false });
     });
   }
 
   voteUpOrDownOnComment = (commentId, vote) => {
     console.log(vote, 'vote')
     return voteComment(commentId, vote)
-    console.log('2')
       .then(body => {
         const newComment = body;
         const newComments = this.state.comments.map(comment => {
@@ -36,25 +37,29 @@ class CommentsList extends React.Component {
 
 
 
-
   render () {
     const { comments, loading } = this.state;
     const articleId = this.props.match.params.article_id
     if (loading) return "loading...";
-    const filteredComments = comments && comments.filter(comment => comment.belongs_to === articleId)
     return (
-      <div>
+      <div className="section">
         <h1>Comments</h1>
-        {filteredComments.map((comment, i) =>  {
+        <AddComment articleId={articleId}/>
+        <br/>
+        <br/>
+        {comments.map((comment, i) =>  {
           const onDownVote = this.voteUpOrDownOnComment.bind(null, comment._id, 'down')
           const onUpVote = this.voteUpOrDownOnComment.bind(null, comment._id, 'down')
         return (<div key={i}>
             <div>
               <div className="box">
-                <article className="media">
+              <article>
                   <div className="media-content">
-                    <div className="content">
+                  <div className="message-header">
                       <p>{comment.created_by}</p>
+                    <button className="delete"></button>
+                    </div>
+                    <div className="content">
                       <p>{comment.body}</p> 
                     </div>
                     <nav className="level is-mobile">

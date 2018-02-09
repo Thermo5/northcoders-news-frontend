@@ -8,8 +8,6 @@ const ArticleList = ({ articles, voteUpOrDownOnArticle}) => (
   <div className="section">
 
     <div className="container is-fluid">
-     
-{console.log(articles, 'articles')}
         {articles && articles.map((article, i) => {
           const onDownVote = voteUpOrDownOnArticle.bind(null, article._id, 'down');
           const onUpVote = voteUpOrDownOnArticle.bind(null, article._id, 'up');
