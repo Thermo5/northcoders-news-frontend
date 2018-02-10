@@ -25,7 +25,10 @@ class AddComment extends React.Component {
   handleSubmit = (event)=> {
     event.preventDefault();
     const {articleId, comment } = this.state
-    return postComment(articleId, comment).then(console.log)
+    return postComment(articleId, comment)
+    .then(() => {
+      this.props.renderSubmittedComment()
+    })
   }
 
 

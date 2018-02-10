@@ -23,6 +23,7 @@ export const voteArticle = (articleId, vote) => {
 }
 
 export const voteComment = (commentId, vote) => {
+  console.log(vote, '**')
    return fetch(`${API_URL}/comments/${commentId}?vote=${vote}`, {
      method: 'PUT'
     })
@@ -41,3 +42,11 @@ export const postComment = (articleId, body) => {
   .then(res => res.json())
 }
 
+
+export const deleteComment = (commentId) => {
+  console.log(commentId)
+  return fetch(`${API_URL}/comments/${commentId}`,{
+    method: 'DELETE'
+  })
+  .then(res => console.log(res))
+}

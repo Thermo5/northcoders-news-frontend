@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import ArticleList from "./articleList";
 import AddComment from "./addComment";
-import { fetchArticles, voteArticle, fetchComments, voteComment } from "../api";
+import { fetchArticles, voteArticle, fetchComments, voteComment, deleteComment } from "../api";
 import Voter from "./vote";
+import Moment from 'moment'
+
 
 
 class CommentsList extends React.Component {
@@ -10,6 +12,11 @@ class CommentsList extends React.Component {
     loading: true,
     comments: []
   }
+
+
+  renderSubmittedComment = () => {
+    this.componentDidMount()
+}
 
   componentDidMount() {
     const articleId = this.props.match.params.article_id
@@ -19,7 +26,7 @@ class CommentsList extends React.Component {
   }
 
   voteUpOrDownOnComment = (commentId, vote) => {
-    console.log(vote, 'vote')
+    console.log(commentId)
     return voteComment(commentId, vote)
       .then(body => {
         const newComment = body;
@@ -30,11 +37,18 @@ class CommentsList extends React.Component {
           return comment;
         })
         this.setState({
-          comments: newComments
+          comments: newComments,
+          submittedComment: false
         })
       })
   }
 
+  handleDeleteComment = (event) => {
+    const commentId = event.target.value
+    return deleteComment(commentId)
+    .then(() => 
+      this.componentDidMount())
+  }
 
 
   render () {
@@ -44,12 +58,14 @@ class CommentsList extends React.Component {
     return (
       <div className="section">
         <h1>Comments</h1>
-        <AddComment articleId={articleId}/>
+        <AddComment articleId={articleId} renderSubmittedComment={this.renderSubmittedComment}/>
         <br/>
         <br/>
-        {comments.map((comment, i) =>  {
+      
+        {comments.sort((a, b) =>  b.created_at - a.created_at ).map((comment, i) =>  {
           const onDownVote = this.voteUpOrDownOnComment.bind(null, comment._id, 'down')
-          const onUpVote = this.voteUpOrDownOnComment.bind(null, comment._id, 'down')
+          const onUpVote = this.voteUpOrDownOnComment.bind(null, comment._id, 'up')
+          
         return (<div key={i}>
             <div>
               <div className="box">
@@ -57,9 +73,11 @@ class CommentsList extends React.Component {
                   <div className="media-content">
                   <div className="message-header">
                       <p>{comment.created_by}</p>
-                    <button className="delete"></button>
+                    <p>{Moment(comment.created_at).fromNow()}</p>
+                    {comment.created_by === "northcoder" ? <button className="delete" value={comment._id} onClick={this.handleDeleteComment}></button> : "" }
                     </div>
                     <div className="content">
+                    
                       <p>{comment.body}</p> 
                     </div>
                     <nav className="level is-mobile">

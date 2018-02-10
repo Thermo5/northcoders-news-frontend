@@ -6,10 +6,10 @@ const Voter = ({ votes, onDownVote, onUpVote }) => (
       <a className="level-item">
         Vote!
         <strong>{votes}</strong>
-        <span className="icon is-small"><i className="fa fa-arrow-up" aria-hidden="true" onClick={onDownVote}></i></span>
+        <span className="icon is-small"><i className="fa fa-arrow-up" aria-hidden="true" onClick={onUpVote}></i></span>
       </a>
       <a className="level-item">
-        <span className="icon is-small"><i className="fa fa-arrow-down" aria-hidden="true" onClick={onUpVote}></i></span>
+        <span className="icon is-small"><i className="fa fa-arrow-down" aria-hidden="true" onClick={onDownVote}></i></span>
       </a>
     </div>
 
