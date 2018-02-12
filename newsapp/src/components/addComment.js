@@ -8,7 +8,8 @@ import {postComment} from "../api"
 class AddComment extends React.Component {
   state = {
     articleId: null,
-    comment: ''
+    comment: '',
+    subminButton: false
   }
 
 
@@ -29,19 +30,23 @@ class AddComment extends React.Component {
     .then(() => {
       this.props.renderSubmittedComment()
     })
+    .then(() => this.setState({comment:''}))
   }
+
+  changeHandler = (e) =>  {
+      this.props.onChange();
+    }
+
 
 
 render () {
   const { comment } = this.state
   return (
     <div>
-      
       <form onSubmit={this.handleSubmit}>
         <textarea className="textarea" name="commentText" placeholder="Add comments" value={comment} onChange={this.handleChange} ></textarea>
-        <button className="button is-success button is-rounded" type="submit">Submit</button>
+        <button className="button is-success button is-rounded" type="submit" disabled={comment ? false : true} onClick={this.changeHandler}>Submit</button>
       </form>
-
     </div>
   )
 }

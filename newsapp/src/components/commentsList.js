@@ -10,13 +10,14 @@ import Moment from 'moment'
 class CommentsList extends React.Component {
   state = {
     loading: true,
-    comments: []
+    comments: [],
+    addComment: false
   }
 
 
   renderSubmittedComment = () => {
     this.componentDidMount()
-}
+  }
 
   componentDidMount() {
     const articleId = this.props.match.params.article_id
@@ -46,54 +47,64 @@ class CommentsList extends React.Component {
   handleDeleteComment = (event) => {
     const commentId = event.target.value
     return deleteComment(commentId)
-    .then(() => 
-      this.componentDidMount())
+      .then(() =>
+        this.componentDidMount())
   }
 
+  renderCommentField = () => this.setState({ addComment: true })
+  
 
-  render () {
-    const { comments, loading } = this.state;
+  unRenderCommentField = () => {
+    setTimeout(()=> {
+      this.setState({ addComment: false })
+    }, 200)}
+
+
+  render() {
+    const { comments, loading, addComment } = this.state;
     const articleId = this.props.match.params.article_id
     if (loading) return "loading...";
     return (
       <div className="section">
         <h1>Comments</h1>
-        <AddComment articleId={articleId} renderSubmittedComment={this.renderSubmittedComment}/>
-        <br/>
-        <br/>
-      
-        {comments.sort((a, b) =>  b.created_at - a.created_at ).map((comment, i) =>  {
+        {!addComment?
+        <a className="button is-link" onClick={this.renderCommentField}>Post Comment</a>:null
+        }
+        {addComment ?
+          <AddComment articleId={articleId} renderSubmittedComment={this.renderSubmittedComment} onChange={this.unRenderCommentField}/> : null
+        }
+        <br />
+        <br />
+        {comments.sort((a, b) => b.created_at - a.created_at).map((comment, i) => {
           const onDownVote = this.voteUpOrDownOnComment.bind(null, comment._id, 'down')
           const onUpVote = this.voteUpOrDownOnComment.bind(null, comment._id, 'up')
-          
-        return (<div key={i}>
+
+          return (<div key={i}>
             <div>
               <div className="box">
-              <article>
+                <article>
                   <div className="media-content">
-                  <div className="message-header">
+                    <div className="message-header">
                       <p>{comment.created_by}</p>
-                    <p>{Moment(comment.created_at).fromNow()}</p>
-                    {comment.created_by === "northcoder" ? <button className="delete" value={comment._id} onClick={this.handleDeleteComment}></button> : "" }
+                      <p>{Moment(comment.created_at).fromNow()}</p>
+                      {comment.created_by === "northcoder" ? <button className="delete" value={comment._id} onClick={this.handleDeleteComment}></button> : ""}
                     </div>
                     <div className="content">
-                    
-                      <p>{comment.body}</p> 
+                      <p>{comment.body}</p>
                     </div>
                     <nav className="level is-mobile">
-                      <p>{comment.votes}</p>
                       <Voter votes={comment.votes}
-                      onDownVote={onDownVote}
-                      onUpVote={onUpVote}
+                        onDownVote={onDownVote}
+                        onUpVote={onUpVote}
                       />
-                    </nav>    
+                    </nav>
                   </div>
                 </article>
               </div>
             </div>
-        </div>)
-         })}
-     </div>
+          </div>)
+        })}
+      </div>
     )
   }
 }

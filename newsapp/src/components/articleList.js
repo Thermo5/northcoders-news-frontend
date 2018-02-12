@@ -5,9 +5,9 @@ import Voter from "./vote";
 
 
 const ArticleList = ({ articles, voteUpOrDownOnArticle}) => (
-  <div className="section">
+  <div>
 
-    <div className="container is-fluid">
+    <div>
         {articles && articles.map((article, i) => {
           const onDownVote = voteUpOrDownOnArticle.bind(null, article._id, 'down');
           const onUpVote = voteUpOrDownOnArticle.bind(null, article._id, 'up');
@@ -18,29 +18,29 @@ const ArticleList = ({ articles, voteUpOrDownOnArticle}) => (
                 <div className="media-content">
                   <div className="content">
                     <p>
-                      <strong>{article.created_by}</strong>
+                      <Link to={`/user/${article.created_by}`} ><strong>{article.created_by}</strong></Link>
                       <br />
-                        <Link to={`/articles/${article._id}/comments`} ><strong>{article.title}</strong></Link>
+                      <strong>{article.title}</strong>
                       <br />
                       {article.body}
-                      <br />
-                      <Link to={`/topics/${article.belongs_to}/articles`}><small>{article.belongs_to}</small></Link>
                     </p>
                   </div>
+                  <div className="article-foot">
                     <nav className="level is-mobile">
-                    <Voter votes={article.votes}
+                      <Voter votes={article.votes}
                       onDownVote={onDownVote}
                       onUpVote={onUpVote}
-                    />
-                      <div className="media-right">Comments{article.comments}</div>
+                      />
+                      <Link to={`/articles/${article._id}/comments`}><span className="comment-text">Comments <i className="far fa-comment"></i></span></Link>
+                      <Link to={`/topics/${article.belongs_to}/articles`}><small>{article.belongs_to}</small></Link>
                     </nav>            
+                  </div>
                 </div>
               </article>
             </div>
           </div>
           )
         })}
-  
     </div>
   </div>
 )

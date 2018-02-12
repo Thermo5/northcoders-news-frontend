@@ -4,6 +4,7 @@ import { BrowserRouter, Route, NavLink, Link } from 'react-router-dom';
 import Navbar from "./navbar.js"
 import HomePage from "./homepage.js"
 import TopicPage from "./topicPage.js";
+import UserPage from "./userPage.js";
 import { fetchTopics } from "../api";
 import NavFoot from "./navFoot.js";
 import CommentsList from "./commentsList.js";
@@ -34,21 +35,13 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Navbar/>
+        <br/>
+        <br/>
         <BrowserRouter>
           <div>
-            <section className="hero is-dark">
-              <div className="hero-body">
-                <div className="container">
-                  <h1 className="title" style={{ textAlign: "left"  }}>NorthCoders News</h1>
-                  <h2 className="subtitle" style={{ textAlign: "left" }}>News it is</h2>
-                </div>
-              </div>
-              <div className="hero-foot">
-                <NavFoot topics={topics}/>
-              </div>
-            </section>
+            <Navbar/>
             <Route exact path='/' component={HomePage} />
+            <Route exact path='/user/:user_id' component={UserPage} />
             <Route exact path='/topics/:topic/articles' component={TopicPage} />
             <Route exact path='/articles/:article_id/comments' component={CommentsList} />
           </div>

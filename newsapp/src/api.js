@@ -50,3 +50,13 @@ export const deleteComment = (commentId) => {
   })
   .then(res => console.log(res))
 }
+
+
+// export const fetchUser = (userId) => {
+//   return fetch(`${API_URL}/users/${userId}`).then(res => res.json());
+// };
+ 
+export const fetchUser = (userId) => {
+  return fetch(`${API_URL}/users/${userId}`).then(res => res.json());
+};
+ 

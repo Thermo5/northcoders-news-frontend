@@ -9,7 +9,6 @@ class TopicPage extends React.Component {
   }
   
   componentDidMount() {
-    console.log(this.props, 'topic')
     const { topic } = this.props.match.params;
     this.fetchArticlesByTopic(topic);
   }
@@ -51,8 +50,8 @@ class TopicPage extends React.Component {
     const { topic } = this.props.match.params;
     const { articles, loading } = this.state;
     return (
-      <div>
-        <h2>Articles on {topic}</h2>
+      <div className="section">
+        <h2 className="topics-header">Articles on {topic}</h2>
         {
           loading ?
             'loading...' :
