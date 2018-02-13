@@ -81,37 +81,35 @@ class CommentsList extends React.Component {
             </div>
           </article>
         </div>
-       
+
         {addComment ? <AddComment articleId={articleId} renderSubmittedComment={this.renderSubmittedComment} onChange={this.unRenderCommentField} /> : null}
-        
         <div className="level">
-          <h1 className="level-left">All {comments.length} comments</h1>
-          <div className="level-right">
-          {!addComment ? <a className="button is-link" onClick={this.renderCommentField}>Post Comment</a> : null}
+          <div className="no-comments">
+            <p className="level-left">All {comments.length} comments</p>
           </div>
-        </div>        
+          <div className="level-right">
+            {!addComment ? <a className="button is-link" onClick={this.renderCommentField}>Post Comment</a> : null}
+          </div>
+        </div>
         {comments.sort((a, b) => b.created_at - a.created_at).map((comment, i) => {
           const onDownVote = this.voteUpOrDownOnComment.bind(null, comment._id, 'down')
           const onUpVote = this.voteUpOrDownOnComment.bind(null, comment._id, 'up')
-
           return (<div key={i}>
             <div>
               <div className="box">
-                <article>
+                <article className="media">
                   <div className="media-content">
-                    <div className="message-header">
-                      <p>{comment.created_by}</p>
-                      <p>{Moment(comment.created_at).fromNow()}</p>
-                      {comment.created_by === "northcoder" ? <button className="delete" value={comment._id} onClick={this.handleDeleteComment}></button> : ""}
-                    </div>
                     <div className="content">
+                      <p><strong>{comment.created_by} </strong> {Moment(comment.created_at).fromNow()}</p>
                       <p>{comment.body}</p>
                     </div>
+                    <hr/>
                     <nav className="level is-mobile">
                       <Voter votes={comment.votes}
                         onDownVote={onDownVote}
                         onUpVote={onUpVote}
                       />
+                      {comment.created_by === "northcoder" ? <button className="delete" value={comment._id} onClick={this.handleDeleteComment}></button> : ""}
                     </nav>
                   </div>
                 </article>

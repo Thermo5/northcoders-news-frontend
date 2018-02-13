@@ -4,6 +4,10 @@ export const fetchTopics = () => {
   return fetch(`${API_URL}/topics`).then(res => res.json());
 };
 
+export const fetchUsers = () => {
+  return fetch(`${API_URL}/users`).then(res => res.json());
+};
+
 export const fetchComments = (articleId) => {
   let article;
   return fetch(`${API_URL}/articles/${articleId}/comments`)

@@ -17,6 +17,7 @@ body {
   padding-left: 2rem;
   text-align: left;
   font-weight: 900;
+  margin-bottom: .5rem
 }
 
 .section {
@@ -47,7 +48,7 @@ margin-bottom: 0%
 }
 
 .level:not(:last-child) {
-    margin-bottom: 0%;
+    margin-bottom: .5rem;
 }
 
 .box:not(:last-child) {
@@ -69,4 +70,42 @@ padding-left: 3rem
 
 .content p:not(:last-child) {
   margin-bottom: .3rem;
+}
+
+.content:not(:last-child) {
+  margin-bottom: .3rem;
+}
+
+div.no-comments {
+  font-weight: bold;
+  padding-left: 1rem
+}
+
+
+
+.textarea:not([rows]) {
+  min-height: 80px
+}
+
+
+.post-button {
+  padding: .5rem;
+  padding-bottom: 0%
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 0;
+    padding: 0;
+}
+
+#nav-toggle-state {
+  display: none;
+}
+
+#nav-toggle-state:checked ~ .nav-menu {
+  display: block;
 }

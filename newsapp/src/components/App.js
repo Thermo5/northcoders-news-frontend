@@ -5,6 +5,7 @@ import Navbar from "./navbar.js"
 import HomePage from "./homepage.js"
 import TopicPage from "./topicPage.js";
 import UserPage from "./userPage.js";
+import UsersPage from "./usersPage.js";
 import { fetchTopics } from "../api";
 import CommentsList from "./commentsList.js";
 
@@ -40,6 +41,7 @@ class App extends Component {
           <div>
             <Navbar/>
             <Route exact path='/' component={HomePage} />
+            <Route exact path='/users' component={UsersPage} />
             <Route exact path='/user/:user_id' component={UserPage} />
             <Route exact path='/topics/:topic/articles' component={TopicPage} />
             <Route exact path='/articles/:article_id/comments' component={CommentsList} />

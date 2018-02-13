@@ -56,8 +56,6 @@ class UserPage extends React.Component {
             </div>
           )
         })}
-
-        dfsdfs
       </div>
     )
   }

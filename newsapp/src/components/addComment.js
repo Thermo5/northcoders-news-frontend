@@ -44,7 +44,9 @@ render () {
     <div>
       <form onSubmit={this.handleSubmit}>
         <textarea className="textarea" name="commentText" placeholder="Add comments" value={comment} onChange={this.handleChange} ></textarea>
+        <div className="post-button level-right">
         <button className="button is-success button is-rounded" type="submit" disabled={comment ? false : true} onClick={this.changeHandler}>Post</button>
+        </div>
       </form>
     </div>
   )
