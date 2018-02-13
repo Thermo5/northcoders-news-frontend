@@ -5,7 +5,13 @@ export const fetchTopics = () => {
 };
 
 export const fetchComments = (articleId) => {
-  return fetch(`${API_URL}/articles/${articleId}/comments`).then(res => res.json());
+  let article;
+  return fetch(`${API_URL}/articles/${articleId}/comments`)
+    .then(res => res.json())
+    .then(comments => {
+      article = fetch(`${API_URL}/articles/${articleId}`).then(res => res.json())
+        return Promise.all([comments, article])
+    })
 };
 
 export const fetchArticles = topic => {
@@ -19,14 +25,13 @@ export const voteArticle = (articleId, vote) => {
   return fetch(`${API_URL}/articles/${articleId}?vote=${vote}`, {
     method: 'PUT'
   })
-  .then(res => res.json());
+    .then(res => res.json());
 }
 
 export const voteComment = (commentId, vote) => {
-  console.log(vote, '**')
-   return fetch(`${API_URL}/comments/${commentId}?vote=${vote}`, {
-     method: 'PUT'
-    })
+  return fetch(`${API_URL}/comments/${commentId}?vote=${vote}`, {
+    method: 'PUT'
+  })
     .then(res => res.json())
 }
 
@@ -39,24 +44,26 @@ export const postComment = (articleId, body) => {
       'Content-Type': 'application/json'
     })
   })
-  .then(res => res.json())
+    .then(res => res.json())
 }
 
 
 export const deleteComment = (commentId) => {
-  console.log(commentId)
-  return fetch(`${API_URL}/comments/${commentId}`,{
+  return fetch(`${API_URL}/comments/${commentId}`, {
     method: 'DELETE'
   })
-  .then(res => console.log(res))
+    .then(res => console.log(res))
 }
 
 
-// export const fetchUser = (userId) => {
-//   return fetch(`${API_URL}/users/${userId}`).then(res => res.json());
-// };
- 
+
 export const fetchUser = (userId) => {
-  return fetch(`${API_URL}/users/${userId}`).then(res => res.json());
+  return fetch(`${API_URL}/users/${userId}`)
+  .then(res => res.json())
+  .then(user => {
+    let articles = fetch(`${API_URL}/users/${userId}/articles`).then(res => res.json())
+    return Promise.all([user, articles])
+  })
 };
- 
+
+

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import '../App.css';
-import { BrowserRouter, Route, NavLink, Link } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Navbar from "./navbar.js"
 import HomePage from "./homepage.js"
 import TopicPage from "./topicPage.js";
 import UserPage from "./userPage.js";
 import { fetchTopics } from "../api";
-import NavFoot from "./navFoot.js";
 import CommentsList from "./commentsList.js";
 
 

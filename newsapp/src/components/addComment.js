@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import {postComment} from "../api"
 
 
@@ -45,7 +44,7 @@ render () {
     <div>
       <form onSubmit={this.handleSubmit}>
         <textarea className="textarea" name="commentText" placeholder="Add comments" value={comment} onChange={this.handleChange} ></textarea>
-        <button className="button is-success button is-rounded" type="submit" disabled={comment ? false : true} onClick={this.changeHandler}>Submit</button>
+        <button className="button is-success button is-rounded" type="submit" disabled={comment ? false : true} onClick={this.changeHandler}>Post</button>
       </form>
     </div>
   )

@@ -17,8 +17,6 @@ body {
   padding-left: 2rem;
   text-align: left;
   font-weight: 900;
-  
-  
 }
 
 .section {
@@ -41,4 +39,34 @@ padding-bottom: 0%
 
 .vote-text {
  font-weight: bold
+}
+
+.level {
+padding: 0%;
+margin-bottom: 0%
+}
+
+.level:not(:last-child) {
+    margin-bottom: 0%;
+}
+
+.box:not(:last-child) {
+  margin-bottom: .5rem
+}
+
+.user-article-title {
+margin-bottom: 0%;
+padding-bottom: 0%;
+font-weight: bold 
+}
+.user-article-num {
+margin-bottom: 0%;
+padding-bottom: .5rem;
+font-weight: bold;
+text-align: left;
+padding-left: 3rem
+}
+
+.content p:not(:last-child) {
+  margin-bottom: .3rem;
 }

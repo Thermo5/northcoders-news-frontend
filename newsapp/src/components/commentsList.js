@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import ArticleList from "./articleList";
 import AddComment from "./addComment";
-import { fetchArticles, voteArticle, fetchComments, voteComment, deleteComment } from "../api";
+import { fetchComments, voteComment, deleteComment } from "../api";
 import Voter from "./vote";
 import Moment from 'moment'
 
@@ -11,6 +10,7 @@ class CommentsList extends React.Component {
   state = {
     loading: true,
     comments: [],
+    article: [],
     addComment: false
   }
 
@@ -22,12 +22,11 @@ class CommentsList extends React.Component {
   componentDidMount() {
     const articleId = this.props.match.params.article_id
     fetchComments(articleId).then(body => {
-      this.setState({ comments: body.comments, loading: false });
+      this.setState({ comments: body[0].comments, loading: false, article: body[1].article });
     });
   }
 
   voteUpOrDownOnComment = (commentId, vote) => {
-    console.log(commentId)
     return voteComment(commentId, vote)
       .then(body => {
         const newComment = body;
@@ -52,29 +51,45 @@ class CommentsList extends React.Component {
   }
 
   renderCommentField = () => this.setState({ addComment: true })
-  
+
 
   unRenderCommentField = () => {
-    setTimeout(()=> {
+    setTimeout(() => {
       this.setState({ addComment: false })
-    }, 200)}
+    }, 200)
+  }
 
 
   render() {
-    const { comments, loading, addComment } = this.state;
+    const { comments, loading, addComment, article } = this.state;
     const articleId = this.props.match.params.article_id
     if (loading) return "loading...";
     return (
       <div className="section">
-        <h1>Comments</h1>
-        {!addComment?
-        <a className="button is-link" onClick={this.renderCommentField}>Post Comment</a>:null
-        }
-        {addComment ?
-          <AddComment articleId={articleId} renderSubmittedComment={this.renderSubmittedComment} onChange={this.unRenderCommentField}/> : null
-        }
-        <br />
-        <br />
+        <div className="box">
+          <article className="media">
+            <div className="media-content">
+              <div className="content">
+                <p>
+                  <strong>{article.created_by}</strong>
+                  <br />
+                  <strong>{article.title}</strong>
+                  <br />
+                  {article.body}
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+       
+        {addComment ? <AddComment articleId={articleId} renderSubmittedComment={this.renderSubmittedComment} onChange={this.unRenderCommentField} /> : null}
+        
+        <div className="level">
+          <h1 className="level-left">All {comments.length} comments</h1>
+          <div className="level-right">
+          {!addComment ? <a className="button is-link" onClick={this.renderCommentField}>Post Comment</a> : null}
+          </div>
+        </div>        
         {comments.sort((a, b) => b.created_at - a.created_at).map((comment, i) => {
           const onDownVote = this.voteUpOrDownOnComment.bind(null, comment._id, 'down')
           const onUpVote = this.voteUpOrDownOnComment.bind(null, comment._id, 'up')

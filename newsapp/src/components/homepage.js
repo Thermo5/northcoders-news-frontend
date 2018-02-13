@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from 'react-router-dom';
 import ArticleList from './articleList'
 import { fetchArticles, voteArticle } from "../api";
 
