@@ -47,7 +47,6 @@ class App extends Component {
             <Route exact path='/user/:user_id' component={UserPage} />
             <Route exact path='/topics/:topic/articles' component={TopicPage} />
             <Route exact path='/articles/:article_id/comments' component={CommentsList} />
-       
             <Route path='/*' component={FourOFour} />
               </Switch>
           </div>
