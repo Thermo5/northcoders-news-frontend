@@ -8,8 +8,8 @@ class Navbar extends React.Component {
  state = {
    burger: "navbar-menu"
  }
-  
 
+  
    toggleNav = () => {
     if (this.state.burger == "navbar-menu") {
       this.setState({ burger: "navbar-menu is-active" })

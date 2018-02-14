@@ -28,8 +28,8 @@ class CommentsList extends React.Component {
 
   voteUpOrDownOnComment = (commentId, vote) => {
     return voteComment(commentId, vote)
-      .then(body => {
-        const newComment = body;
+      .then(comments => {
+        const newComment = comments.comments;
         const newComments = this.state.comments.map(comment => {
           if (comment._id === newComment._id) {
             return newComment

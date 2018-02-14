@@ -36,7 +36,8 @@ export const voteComment = (commentId, vote) => {
   return fetch(`${API_URL}/comments/${commentId}?vote=${vote}`, {
     method: 'PUT'
   })
-    .then(res => res.json())
+    .then(res => {
+      return res.json()})
 }
 
 

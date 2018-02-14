@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from "./navbar.js"
 import HomePage from "./homepage.js"
 import TopicPage from "./topicPage.js";
@@ -41,12 +41,15 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Navbar/>
+            <Switch>
             <Route exact path='/' component={HomePage} />
             <Route exact path='/users' component={UsersPage} />
             <Route exact path='/user/:user_id' component={UserPage} />
             <Route exact path='/topics/:topic/articles' component={TopicPage} />
             <Route exact path='/articles/:article_id/comments' component={CommentsList} />
-            <Route exact path='/*' component={FourOFour} />
+       
+            <Route path='/*' component={FourOFour} />
+              </Switch>
           </div>
         </BrowserRouter>
       </div>
