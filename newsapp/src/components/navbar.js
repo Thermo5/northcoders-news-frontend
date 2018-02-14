@@ -30,7 +30,7 @@ render () {
           <a className="navbar-item">
             <img className="img-responsive" src="https://northcoders.com/images/logos/learn_to_code_manchester_rw_second.png" id="white-nav-logo" title="Northcoders coding bootcamp logo" />
           </a>
-          <div className="navbar-burger" id="nav-toggle" onClick={this.toggleNav}>
+          <div className="navbar-burger" data-target="nav-toggle" onClick={this.toggleNav}>
             <span></span>
             <span></span>
             <span></span>
@@ -39,14 +39,14 @@ render () {
 
         <div className={burger} id="nav-toggle">
           <div className="navbar-start">
-            <Link className="navbar-item" to="/">Home</Link>
-                <Link className="navbar-item" to={`/users`}>Users</Link>
+            <Link className="navbar-item" to="/" onClick={this.toggleNav}>Home</Link>
+            <Link className="navbar-item" to={`/users`} onClick={this.toggleNav}>Users</Link>
             <div className="navbar-item has-dropdown is-hoverable ">
-              <a className="navbar-link">Topics</a>
+              <a className="navbar-link" onClick={this.toggleNav}>Topics</a>
               <div className="navbar-dropdown is-boxed">
-                <Link className="navbar-item" to={`/topics/football/articles`}>Football</Link>
-                <Link className="navbar-item" to={`/topics/cooking/articles`}>Cooking</Link>
-                <Link className="navbar-item" to={`/topics/coding/articles`}>Coding</Link>
+                <Link className="navbar-item" to={`/topics/football/articles`} onClick={this.toggleNav}>Football</Link>
+                <Link className="navbar-item" to={`/topics/cooking/articles`} onClick={this.toggleNav}>Cooking</Link>
+                <Link className="navbar-item" to={`/topics/coding/articles`} onClick={this.toggleNav}>Coding</Link>
               </div>
             </div>
           </div>

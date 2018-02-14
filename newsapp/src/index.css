@@ -109,3 +109,10 @@ hr {
 #nav-toggle-state:checked ~ .nav-menu {
   display: block;
 }
+
+.wrapper404 {
+    margin-bottom: 42px;
+    line-height: 162px;
+    font-size: 100px;
+    color: rgb(108, 108, 255)
+}
