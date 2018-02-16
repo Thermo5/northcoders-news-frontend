@@ -4,26 +4,33 @@ Northcoders News is a social news aggregation, web content rating, and discussio
 
 ## Getting Started
 
-To see the project in action please click [here](https://northcoders-news-12345.herokuapp.com/).
+To see the project in action please click [here](https://northcoders-news-frontend.herokuapp.com/).
 
-And this is a link to the [API](https://github.com/lukemurray77/NC-NEWS-API)
+And this is a link to the [API](https://github.com/Thermo5/northcoders-news-backend)
 
 ## Prerequisites
 
 ```
-    Node.js v7.0.0 or higher
+    Node.js v8.6.0 or higher
+    npm v5.6.0
+    git version 2.14.3
 ```
 ## Installation
-If you would like to download the project to run on your local machine follow these steps:
+To run this project you will need to clone it onto your local machine and install all dependencies.
 
+Navigate to you chosen directory and run the following command in the commandline to clone the package:
 ```
-    Git clone https://github.com/lukemurray77/Northcoders-News.git ncnews
+    git clone https://github.com/Thermo5/northcoders-news-frontend.git
+```
 
-    cd ncnews
-
+To install all depencency run:
+```
     npm install
+```
 
-    npm run dev
+Finally to run the app:
+```
+    npm start
 ```
 Once the build process has finished go to [http://localhost:9090/](http://localhost:9090/) in your browser.
 
