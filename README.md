@@ -1,6 +1,6 @@
 # Northcoders News
 
-Northcoders News is a social news aggregation, web content rating, and discussion website, based on Reddit. Articles are divided into topics and each article has user curated ratings and can be up or down voted using the API. Users can also add comments about an article which can also be up or down voted. A user can add comments and remove any comments which they have added.
+Northcoders News is a social news aggregation, web content rating, and discussion website. Articles are divided into topics and each article has user curated ratings and can be up or down voted using the API. Users can also add comments about an article which can also be up or down voted. A user can add comments and remove any comments which they have added.
 
 ## Getting Started
 
@@ -11,7 +11,7 @@ And this is a link to the [API](https://github.com/Thermo5/northcoders-news-back
 ## Prerequisites
 
 ```
-    Node.js v8.6.0 or higher
+    Node.js v8.6.0
     npm v5.6.0
     git version 2.14.3
 ```
